@@ -15,7 +15,15 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+private slots:
+    void on_btnOpen_clicked();
+    //void on_pushButton_clicked();
+    void on_btnClose_clicked();
+
 private:
     Ui::MainWindow *ui;
+    void addTab(QString tabName);
+    int getTabIndexOf(QString tabName);
+    bool removeTab(QString tabName);
 };
 #endif // MAINWINDOW_H
