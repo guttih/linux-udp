@@ -1,7 +1,8 @@
 #ifndef GSTRING_H
 #define GSTRING_H
 
-#include <string>
+//todo: ifdef arduino include string else <cstring>
+#include <cstring>
 #include <iostream>
 #include <vector>
 #include <sstream>

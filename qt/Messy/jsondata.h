@@ -1,7 +1,7 @@
 #ifndef _JSONDATA_H
 #define _JSONDATA_H
 
-#include "string.h"
+#include "gstring.h"
 
 #ifndef NULL
 #define NULL nullptr

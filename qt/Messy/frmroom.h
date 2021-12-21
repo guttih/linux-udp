@@ -13,6 +13,7 @@ class frmRoom : public QWidget
 
 public:
     explicit frmRoom(QWidget *parent = nullptr);
+    frmRoom(QString roomName, QWidget *parent = nullptr);
     ~frmRoom();
 
 private:

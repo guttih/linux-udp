@@ -1,15 +1,17 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "frmroom.h"
-//#include "json.h"
-#include "gstring.h"
+#include "json.h"
+
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    //Json json("{\"hello\":\"world\"}");
+    Json json("{\"hello\":\"world\"}");
+    QString     qstr = json.toString().c_str();
+
     String str = "bull";
     ui->tabWidget->removeTab(1);
     ui->listAvailable->addItem("Public");
@@ -17,7 +19,7 @@ MainWindow::MainWindow(QWidget *parent)
 
 void MainWindow::addTab(QString tabName)
 {
-    int ret = ui->tabWidget->addTab(new frmRoom(), tabName);
+    int ret = ui->tabWidget->addTab(new frmRoom(tabName), tabName);
 }
 
 int MainWindow::getTabIndexOf(QString tabName)
@@ -74,10 +76,20 @@ void MainWindow::on_btnClose_clicked()
         addTab(name);
         ui->listAvailable->addItem(name);
         ui->listOpen->removeItemWidget(pItem);
-        delete pItem;
         removeTab(name);
-
+        delete pItem;
     }
+}
 
+
+void MainWindow::on_listAvailable_itemSelectionChanged()
+{
+        ui->btnOpen->setDisabled(ui->listAvailable->currentRow() < 0);
+}
+
+
+void MainWindow::on_listOpen_itemSelectionChanged()
+{
+    ui->btnClose->setDisabled(ui->listOpen->currentRow() < 0);
 }
 
